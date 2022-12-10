@@ -2,7 +2,12 @@ var now = dayjs().format('dddd: MMM D, YYYY; h:mm A')
 document.getElementById("currentDay").innerHTML = now;
 
 console.log(dayjs().format())
-
+class TimeblockObj {
+  consturctor(hour, todo) {
+    this.hour = hour;
+    this.todo = todo;
+  }
+}
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -82,7 +87,55 @@ $(function () {
       return saveBtn;
     }
 
-    
+    function appendTImeBlockColumns(timeBlockRow, hourCol, textAreaCol, saveBtnCol) {
+      const innerCols = [hourCol, textAreaCol, saveBtnCol];
+      for (let col of innerCols) {
+        timeBlockRow.appendChild(col);
+      }
+    }
+
+    function containerClicked(event, timeBlockList) {
+      if (isSaveButton(event)) {
+        const timeBlockHour = getTimeBlockHour(event);
+        const textAreaValue  = getTextAreaValue(timeBlockHour);
+        placeTimeBlockInList(new TimeblockObj(timeBlockHour, textAreaValue), timeBlockList);
+        saveTimeBlockList(timeBlockList);
+      }
+    }
+
+    function isSaveButton(event) {
+      return event.target.matches('button') || event.target.mathces('.fa-save');
+    }
+
+    function getTimeBlockHour(event) {
+      return event.target.matches('.fa-save') ? event.target.parentElement.dataset.hour : event.target.dataset.hour;
+    }
+    function getTextAreaValue(timeBlockHour) {
+      return document.querySelector(`#timeblock-${timeBlockHour} textarea`).value;
+    }
+    function placeTimeBlockInList(newTimeBlockObj, timeBlockList){
+      if (timeBlockList.length>0) {
+        for (let savedTimeBlock of timeBlockList) {
+          if(savedTimeBlock.hour === newTimeBlockObj.hour) {
+            savedTimeBlock.todo = newTimeBlockObj.todo;
+            return;
+          }
+        }
+      }
+      timeBlockList.push(newTimeBlockObj);
+      return;
+    }
+
+    function saveTimeBlockList(timeBlockList) {
+      if (timeBlockList.length === 0) {
+        return;
+      } else {
+        for (let timeBlock of timeBlockList) {
+          document.querySelector(`#timeblock-${timeBlock.hour} textarea`)
+          .value = timeBlock.todo;
+        }
+      }
+    }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
