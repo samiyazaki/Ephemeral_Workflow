@@ -25,6 +25,50 @@ $(function () {
       return presentTimeSlot ? JSON.parse(presentTimeSlot) : [];
     }
     
+    function displayTimeSlots(presentTime) {
+      const presentHour = presentTime.hour();
+      for(let i=9; i<=17; i ++) {
+        const timeBlock = createTimeBlockRow(i);
+        const hourCol = createCol(createHourDiv(i), 1);
+        const textArea = createCol(createTextArea(i, presentHour), 10);
+        const saveBtn = createCol(createSaveBtn(i), 1);
+        appendTimeBlockColumns(timeBlock, hourCol, textArea, saveBtn);
+        document.querySelector('.container-lg').appendChild(timeBlock);
+      }
+    }
+
+    function createTimeBlockRow(hourId) {
+      const timeBlock =document.createElement('div');
+      timeBlock.classList.add('row');
+      timeBlock.id = `timeblock-${hourId}'`;
+      return timeBlock;
+    }
+
+    function createCol(element, colSize) {
+      const col = document.createElement('div');
+      col.classList.add(`col-${colSize}`, 'p-0');
+      col.appendChild(element);
+      return col;
+    }
+
+    function createHourDiv(hour) {
+      const hourCol = document.createElement('div');
+      hourCol.classList.add('hour');
+      hourCol.textContent = formatHour(hour);
+      return hourCol;
+    }
+
+    function formatHour(hour) {
+      const hourString = String(hour);
+      return dayjs(hourString, 'h').format('h A');
+    }
+    function createTextArea(hour, presentHour) {
+      const textArea = document.createElement('textArea');
+      textArea.classList.add(getTextAreaBackgroundClass(hour, presentHour));
+      return textArea;
+    }
+
+    function getTextAreaBackgroundClass()
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
