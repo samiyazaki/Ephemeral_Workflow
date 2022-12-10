@@ -1,3 +1,8 @@
+var now = dayjs().format('dddd: MMM D, YYYY; h:mm A')
+document.getElementById("currentDay").innerHTML = now;
+
+console.log(dayjs().format())
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -8,10 +13,6 @@ $(function () {
     displayTime(presentTime);
     displayTimeSlots(presentTime);
 
-    var now = dayjs().format('dddd: MMM D, YYYY; h:mm A')
-    document.getElementById("currentDay").innerHTML = now;
-    
-    console.log(dayjs().format())
     document.querySelector('.container-lg')
       .addEventListener('click', function(event) {
         containerClicked(event, presentTimeSlot);
@@ -23,9 +24,7 @@ $(function () {
       const presentTimeSlot = localStorage.getItem('displayTime');
       return presentTimeSlot ? JSON.parse(presentTimeSlot) : [];
     }
-
-
-
+    
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
