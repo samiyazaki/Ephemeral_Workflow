@@ -3,21 +3,15 @@ document.getElementById("currentDay").innerHTML = now;
 
 console.log(dayjs().format())
 class TimeblockObj {
-  consturctor(hour, todo) {
+  constructor(hour, todo) {
     this.hour = hour;
     this.todo = todo;
   }
 }
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
     const presentTimeSlot = getPresentTimeSlot();
     const presentTime = dayjs();
-    console.log(presentTime);
-    displayTime(presentTime);
     displayTimeSlots(presentTime);
-
     document.querySelector('.container-lg')
       .addEventListener('click', function(event) {
         containerClicked(event, presentTimeSlot);
@@ -87,7 +81,7 @@ $(function () {
       return saveBtn;
     }
 
-    function appendTImeBlockColumns(timeBlockRow, hourCol, textAreaCol, saveBtnCol) {
+    function appendTimeBlockColumns(timeBlockRow, hourCol, textAreaCol, saveBtnCol) {
       const innerCols = [hourCol, textAreaCol, saveBtnCol];
       for (let col of innerCols) {
         timeBlockRow.appendChild(col);
@@ -104,7 +98,7 @@ $(function () {
     }
 
     function isSaveButton(event) {
-      return event.target.matches('button') || event.target.mathces('.fa-save');
+      return event.target.matches('button') || event.target.matches('.fa-save');
     }
 
     function getTimeBlockHour(event) {
@@ -125,8 +119,10 @@ $(function () {
       timeBlockList.push(newTimeBlockObj);
       return;
     }
-
     function saveTimeBlockList(timeBlockList) {
+      localStorage.setItem('displayTime', JSON.stringify(timeBlockList));
+    }
+    function setTimeSlotText(timeBlockList) {
       if (timeBlockList.length === 0) {
         return;
       } else {
