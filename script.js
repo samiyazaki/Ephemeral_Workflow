@@ -68,7 +68,21 @@ $(function () {
       return textArea;
     }
 
-    function getTextAreaBackgroundClass()
+    function getTextAreaBackgroundClass(hour, presentHour) {
+      return hour < presentHour ? 'past'
+      :hour === presentHour ? 'present'
+      : 'future';
+    }
+
+    function createSaveBtn(hour) {
+      const saveBtn = document.createElement('button');
+      saveBtn.classList.add('saveBtn');
+      saveBtn.innerHTML = '<i class="fas fa-save"></i>';
+      saveBtn.setAttribute('data-hour', hour);
+      return saveBtn;
+    }
+
+    
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
