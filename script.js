@@ -1,9 +1,7 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
-  var now = dayjs().format("dddd: MMM D, YYYY; h:mm A");
-  document.getElementById("currentDay").innerHTML = now;
+  var now = dayjs().format("dddd: MMM D, YYYY; h:mm A"); // displays as Sunday: Dec 11, 2022; 4:27 PM or whatever time it is for you now. I don't judge
+  document.getElementById("currentDay").innerHTML = now; //allows text to display in the "currentDay" element by id
+  
   var init = false;
   let kiefer24 = dayjs().format("H");
   let chiwetel12 = dayjs().format("h");
