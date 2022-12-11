@@ -68,11 +68,12 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  let value = localStorage.getItem("#hour-9.description");
-  //$('#hour-9.description').val(localStorage.getItem('#hour-9'));
+  let hour9 = localStorage.getItem("#hour-9.description");
+
+  $('#hour-9.description').val(localStorage.getItem(hour9));
   //$('#hour-10.description').val(localStorage.getItem('hour-10'));
   // $('#hour-11.description').val(localStorage.getItem('hour-11'));
-  console.log(value);
+  console.log(hour9);
   /*var saved9 = localStorage.getItem('text9');
     document.getElementById('9').value = saved9;*/
   // TODO: Add code to display the current date in the header of the page.
