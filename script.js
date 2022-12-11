@@ -14,6 +14,16 @@ $(function () {
     var cal = new Date();
     var currentHour = cal.getHours();
 
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+     
+        confetti({
+          angle: randomInRange(15, 300),
+          spread: randomInRange(10, 700),
+          particleCount: randomInRange(250, 500),
+          origin: { y: 0.6 }
+        });
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
     // local storage. HINT: What does `this` reference in the click listener
@@ -27,6 +37,19 @@ $('.saveBtn').on("click", function () {
         var time = $(this).parent().attr("id");
         localStorage.setItem(value, time);
         console.log(value, time);
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+          }
+         
+            confetti({
+              angle: randomInRange(300, 300),
+              spread: randomInRange(700, 700),
+              particleCount: randomInRange(250, 500),
+              origin: { y: 0.1 }
+            });
+        var clickAudio = new Audio("./assets/mixkit-fairy-arcade-sparkle-866.wav");
+        clickAudio.play();
+        return;
 });
     // TODO: Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour. HINTS: How can the id
