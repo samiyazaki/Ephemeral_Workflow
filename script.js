@@ -9,7 +9,7 @@ $(function () {
 
   var init = false;
   let kiefer24 = dayjs().format("H"); //Setting 24 hour clock
-  let chiwetel12 = dayjs().format("h"); //Setting 12 hour clock
+  let chiwetel12 = dayjs().format("h"); //Setting 12 hour clocksecretlab chairgaming
   if (init) {
     kiefer24 = 13;
     chiwetel12 = 1;
@@ -38,19 +38,16 @@ $(function () {
     return;
   });
 
-  for (var i = 9; i < 18; i++) {
+  for (var i = 9; i < 18; i++) { //Sets the range for the variable i which is related to the currentHour
     if (i < currentHour) {
-      document.getElementById(i.toString()).classList.add("past");
+      document.getElementById(i.toString()).classList.add("past"); //If i is less than the current hour it is the past
     } else if (i === currentHour) {
-      document.getElementById(i.toString()).classList.add("present");
+      document.getElementById(i.toString()).classList.add("present"); // If i is equal to the current hour it is the present
     } else if (i > currentHour) {
-      document.getElementById(i.toString()).classList.add("future");
+      document.getElementById(i.toString()).classList.add("future"); // If i is greater than the current hour it is the future
     }
   }
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  $("#hour9 .description").val(localStorage.getItem("hour9"));
+  $("#hour9 .description").val(localStorage.getItem("hour9")); // I could not figure out how to create a variable set for the getItem calls so I called each item individually by row
   $("#hour10 .description").val(localStorage.getItem("hour10"));
   $("#hour11 .description").val(localStorage.getItem("hour11"));
   $("#hour12 .description").val(localStorage.getItem("hour12"));
@@ -59,9 +56,4 @@ $(function () {
   $("#hour15 .description").val(localStorage.getItem("hour15"));
   $("#hour16 .description").val(localStorage.getItem("hour16"));
   $("#hour17 .description").val(localStorage.getItem("hour17"));
-  //$('#hour-10.description').val(localStorage.getItem('hour-10'));
-  // $('#hour-11.description').val(localStorage.getItem('hour-11'));
-  /*var saved9 = localStorage.getItem('text9');
-    document.getElementById('9').value = saved9;*/
-  // TODO: Add code to display the current date in the header of the page.
 });
