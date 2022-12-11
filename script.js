@@ -19,10 +19,10 @@ $(function () {
   }
 
   confetti({
-    angle: randomInRange(15, 300),
-    spread: randomInRange(10, 700),
-    particleCount: randomInRange(250, 500),
-    origin: { y: 0.6 },
+    angle: randomInRange(300, 300),
+    spread: randomInRange(700, 700),
+    particleCount: randomInRange(500, 500),
+    origin: { y: 0.1 },
   });
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
